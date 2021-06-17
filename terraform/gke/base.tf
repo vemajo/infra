@@ -1,14 +1,14 @@
 variable "project_name" {}
 
 provider "google" {
-  project     = "${var.project_name}-dev"
-  region      = "europe-north1"
+  project = "${var.project_name}-dev"
+  region  = "europe-north1"
 }
 
 terraform {
   backend "gcs" {
-    bucket  = "vemajo_iac_bucket"
-    prefix  = "terraform/gke/cluster"
+    bucket = "vemajo_iac_bucket"
+    prefix = "terraform/gke/cluster"
   }
 }
 
@@ -40,7 +40,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     service_account = google_service_account.default.email
-    oauth_scopes    = [
+    oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
   }

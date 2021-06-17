@@ -7,6 +7,14 @@ steps:
   - | 
       cd terraform/gke
       terraform init
+- id: 'Terraform fmt check'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      cd terraform/gke
+      terraform fmt -check -diff
 - id: 'Terraform Plan'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
@@ -15,11 +23,3 @@ steps:
   - | 
       cd terraform/gke
       terraform plan
-- id: 'Terraform Apply'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-      cd terraform/gke 
-      terraform apply -auto-approve
